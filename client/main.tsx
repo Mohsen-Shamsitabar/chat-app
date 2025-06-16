@@ -5,7 +5,8 @@ import { BrowserRouter } from "react-router";
 import App from "./App.tsx";
 import "./colors/dark.css";
 import "./colors/light.css";
-import "./colors/red.css";
+import "./colors/purple.css";
+import "./colors/yellow.css";
 import "./main.css";
 
 const rootElement = document.getElementById("root");
