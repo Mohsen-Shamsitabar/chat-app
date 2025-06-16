@@ -1,36 +1,48 @@
 :root {
-  --primary-background-color: ;
-  --secondary-background-color: ;
+  --default-background-color: var(--light-0);
+  --primary-background-color: var(--purple-200);
+  --secondary-background-color: var(--yellow-200);
 
-  --primary-text-color: ;
-  --secondary-text-color: ;
+  --default-text-color: var(--dark--100);
+  --primary-text-color: var(--purple-700);
+  --secondary-text-color: var(--yellow-700);
 
-  --primary-border-color: ;
-  --secondary-border-color: ;
+  --default-border-color: var(--dark-600);
+  --primary-border-color: var(--purple-400);
+  --secondary-border-color: var(--yellow-400);
 
-  --button-solid-background-color: ;
-  --button-solid-text-color: ;
+  --error-text-color: #e2483d;
+  --success-text-color: #6a9a23;
 
-  --button-outline-background-color: ;
-  --button-outline-text-color: ;
+  --color-hover-delta: -30;
+  --color-active-delta: -60;
+
+  --input-background-color: #ececec;
+  --input-outline-color: #adadad;
 
   /* === === === */
 
   [data-theme="dark"] {
-    --primary-background-color: ;
-    --secondary-background-color: ;
+    --default-background-color: var(--dark-0);
+    --primary-background-color: var(--purple-900);
+    --secondary-background-color: var(--yellow-900);
 
-    --primary-text-color: ;
-    --secondary-text-color: ;
+    --default-text-color: var(--light-0);
+    --primary-text-color: var(--purple-400);
+    --secondary-text-color: var(--yellow-400);
 
-    --primary-border-color: ;
-    --secondary-border-color: ;
+    --default-border-color: var(--light-600);
+    --primary-border-color: var(--purple-700);
+    --secondary-border-color: var(--yellow-700);
 
-    --button-solid-background-color: ;
-    --button-solid-text-color: ;
+    --error-text-color: #f15b50;
+    --success-text-color: #94c748;
 
-    --button-outline-background-color: ;
-    --button-outline-text-color: ;
+    --color-hover-delta: 30;
+    --color-active-delta: 60;
+
+    --input-background-color: #323236;
+    --input-outline-color: #575757;
   }
 
   /* ------------------------------ */
@@ -49,10 +61,16 @@
     sans-serif;
 }
 
+* {
+  transition-property: background-color, color, border-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
 #root {
   height: 100vh;
   width: 100vw;
 
-  background-color: var(--primary-background-color);
-  transition: background-color 250ms ease;
+  background-color: var(--default-background-color);
+  color: var(--default-text-color);
 }

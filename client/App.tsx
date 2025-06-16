@@ -1,24 +1,23 @@
 import { Route, Routes } from "react-router";
-import { io } from "socket.io-client";
-import { HomePage } from "./views/index.ts";
-
-const socket = io("http://localhost:3001");
-
-socket.on("connect", () => {
-  console.log("Connected with ID:", socket.id);
-});
-
-socket.on("welcome", message => {
-  console.log("Server says:", message);
-});
+import { ChatPage, ConversationPage, LoginPage } from "./views/index.ts";
 
 const App = () => {
   return (
     <Routes>
       <Route
         path="/"
-        element={<HomePage />}
-      />
+        element={<LoginPage />}
+      ></Route>
+
+      <Route
+        path="chat"
+        element={<ChatPage />}
+      >
+        <Route
+          path=":userid"
+          element={<ConversationPage />}
+        />
+      </Route>
     </Routes>
   );
 };

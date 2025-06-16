@@ -1,0 +1,114 @@
+.root {
+  --border-color: var(--default-border-color);
+  --border-radius: 0.4rem;
+  --border-size: 0.1rem;
+  --background-color: var(--default-background-color);
+  --text-color: var(--default-text-color);
+  --opacity: 1;
+  --cursor: pointer;
+
+  /* === === === */
+
+  border: none;
+  background-color: var(--background-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  opacity: var(--opacity);
+  cursor: var(--cursor);
+
+  padding: 0.25rem 0.5rem;
+
+  &:disabled {
+    --opacity: 0.65;
+    --cursor: not-allowed;
+  }
+
+  &:hover {
+    /* cant re-calc variables in psudo-classes */
+
+    background-color: rgb(
+      from var(--background-color) calc(r + var(--color-hover-delta))
+        calc(g + var(--color-hover-delta)) calc(b + var(--color-hover-delta))
+    );
+
+    color: rgb(
+      from var(--text-color) calc(r + var(--color-hover-delta))
+        calc(g + var(--color-hover-delta)) calc(b + var(--color-hover-delta))
+    );
+
+    border-color: rgb(
+      from var(--border-color) calc(r + var(--color-hover-delta))
+        calc(g + var(--color-hover-delta)) calc(b + var(--color-hover-delta))
+    );
+  }
+
+  &:active {
+    /* cant re-calc variables in psudo-classes */
+
+    background-color: rgb(
+      from var(--background-color) calc(r + var(--color-active-delta))
+        calc(g + var(--color-active-delta)) calc(b + var(--color-active-delta))
+    );
+
+    color: rgb(
+      from var(--text-color) calc(r + var(--color-active-delta))
+        calc(g + var(--color-active-delta)) calc(b + var(--color-active-delta))
+    );
+
+    border-color: rgb(
+      from var(--border-color) calc(r + var(--color-active-delta))
+        calc(g + var(--color-active-delta)) calc(b + var(--color-active-delta))
+    );
+  }
+}
+
+.default {
+  --border-color: var(--default-border-color);
+  --background-color: var(--default-background-color);
+  --text-color: var(--default-text-color);
+}
+
+.primary {
+  --border-color: var(--primary-border-color);
+  --background-color: var(--primary-background-color);
+  --text-color: var(--primary-text-color);
+}
+
+.secondary {
+  --border-color: var(--secondary-border-color);
+  --background-color: var(--secondary-background-color);
+  --text-color: var(--secondary-text-color);
+}
+
+.fill {
+  --text-color: var(--default-text-color);
+
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--border-radius);
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.outline {
+  --background-color: transparent;
+  --border-color: var(--text-color);
+
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.text {
+  --background-color: transparent;
+
+  color: var(--text-color);
+}
+
+.link {
+  --background-color: transparent;
+
+  color: var(--text-color);
+
+  text-decoration-line: underline;
+  text-underline-offset: 0.25rem;
+}

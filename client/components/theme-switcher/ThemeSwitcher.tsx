@@ -11,11 +11,11 @@ const ThemeSwitcher = () => {
   );
 
   React.useEffect(() => {
-    const rootNode = document.querySelector<HTMLDivElement>("#root");
+    const bodyNode = document.querySelector<HTMLBodyElement>("body");
 
-    if (!rootNode) throw new Error(`No "rootNode" provided!`);
+    if (!bodyNode) throw new Error(`No "bodyNode" provided!`);
 
-    rootNode.setAttribute("data-theme", currentTheme);
+    bodyNode.setAttribute("data-theme", currentTheme);
   }, [currentTheme]);
 
   const handleClick = () => {
