@@ -1,12 +1,13 @@
 import { type FormState, type UseFormRegister } from "react-hook-form";
-import { type LoginFormSchemaType } from "../../forms/index.ts";
+import { type LoginFormSchema } from "../../../../schemas/login-form.ts";
+import { Input } from "../../../components/index.ts";
 import classes from "./styles.module.css";
 
 type Props = {
   label: string;
-  name: keyof LoginFormSchemaType;
-  register: UseFormRegister<LoginFormSchemaType>;
-  formState: FormState<LoginFormSchemaType>;
+  name: keyof LoginFormSchema;
+  register: UseFormRegister<LoginFormSchema>;
+  formState: FormState<LoginFormSchema>;
 };
 
 const StringFormControl = (props: Props) => {
@@ -32,8 +33,7 @@ const StringFormControl = (props: Props) => {
         {label}
       </label>
 
-      <input
-        className={classes["input"]}
+      <Input
         placeholder="example: mohsen"
         type="text"
         id={name}
