@@ -1,12 +1,61 @@
-import { Outlet } from "react-router";
+import * as React from "react";
+import { useNavigate } from "react-router";
+import { io, type Socket } from "socket.io-client";
+import {
+  CHANNELS,
+  CLIENT_ROUTES,
+  SERVER_URL,
+} from "../../../constants/network.ts";
+import { useLoggedUserManager } from "../../../managers/logged-user.tsx";
+import { ClientSocketProvider } from "../../../providers/client-socket.tsx";
+import { MessageInput, MessagesContainer } from "./components/index.ts";
+import classes from "./styles.module.css";
 
 const ChatPage = () => {
-  return (
-    <div>
-      <span>CHAT</span>
+  const navigate = useNavigate();
+  const loggedUserManager = useLoggedUserManager();
+  const [socket, setSocket] = React.useState<null | Socket>(null);
 
-      <Outlet />
-    </div>
+  React.useEffect(() => {
+    if (!loggedUserManager) return;
+
+    const { loggedUser } = loggedUserManager;
+
+    if (!loggedUser) {
+      void navigate(CLIENT_ROUTES.LOGIN);
+      return;
+    }
+
+    const { username } = loggedUser;
+
+    //=== SOCKET ===//
+
+    const clientSocket = io(SERVER_URL);
+
+    clientSocket.on(CHANNELS.CONNECT, () => {
+      console.log("Connected with ID:", clientSocket.id);
+    });
+
+    clientSocket.emit(CHANNELS.LOGIN, username);
+
+    setSocket(clientSocket);
+
+    return () => {
+      clientSocket.off(CHANNELS.CONNECT);
+      clientSocket.off(CHANNELS.LOGIN);
+    };
+  }, []);
+
+  if (!socket) return null;
+
+  return (
+    <main className={classes["root"]}>
+      <ClientSocketProvider socket={socket}>
+        <MessagesContainer className={classes["messages"]} />
+
+        <MessageInput />
+      </ClientSocketProvider>
+    </main>
   );
 };
 

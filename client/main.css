@@ -1,4 +1,11 @@
 :root {
+  --animation-duration: 250ms;
+  --width-breakpoint: 512px;
+  --header-height: 3.5rem;
+  --chat-input-height: 3.5rem;
+
+  /* === === === */
+
   --default-background-color: var(--light-0);
   --primary-background-color: var(--purple-200);
   --secondary-background-color: var(--yellow-200);
@@ -62,14 +69,16 @@
 }
 
 * {
-  transition-property: background-color, color, border-color;
-  transition-duration: 250ms;
+  transition-property: background-color, color, border-color, outline-color;
+  transition-duration: var(--animation-duration);
   transition-timing-function: ease;
+
+  box-sizing: border-box;
 }
 
-#root {
-  height: 100vh;
-  width: 100vw;
+body {
+  /* height: 100vh; */
+  /* width: 100vw; */
 
   background-color: var(--default-background-color);
   color: var(--default-text-color);

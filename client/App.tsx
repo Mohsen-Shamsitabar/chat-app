@@ -1,24 +1,35 @@
+import * as React from "react";
 import { Route, Routes } from "react-router";
-import { ChatPage, ConversationPage, LoginPage } from "./views/index.ts";
+import { CLIENT_ROUTES } from "../constants/network.ts";
+import { LoggedUserManagerProvider } from "../managers/logged-user.tsx";
+import { type LoginFormSchema } from "../schemas/login-form.ts";
+import { Header } from "./components/index.ts";
+import { ChatPage, LoginPage } from "./views/index.ts";
 
 const App = () => {
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={<LoginPage />}
-      ></Route>
+  const [loggedUser, setLoggedUser] = React.useState<null | LoginFormSchema>(
+    null,
+  );
 
-      <Route
-        path="chat"
-        element={<ChatPage />}
-      >
+  return (
+    <LoggedUserManagerProvider
+      loggedUser={loggedUser}
+      setLoggedUser={setLoggedUser}
+    >
+      <Header />
+
+      <Routes>
         <Route
-          path=":userid"
-          element={<ConversationPage />}
+          path={CLIENT_ROUTES.LOGIN}
+          element={<LoginPage />}
+        ></Route>
+
+        <Route
+          path={CLIENT_ROUTES.CHATROOM}
+          element={<ChatPage />}
         />
-      </Route>
-    </Routes>
+      </Routes>
+    </LoggedUserManagerProvider>
   );
 };
 
