@@ -1,1 +1,1 @@
-export { default, type LoginFormSchemaType } from "./LoginForm.tsx";
+export { default } from "./LoginForm.tsx";

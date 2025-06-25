@@ -1,0 +1,54 @@
+.root {
+  --border-radius: 0.75rem;
+  --border-color: var(--secondary-border-color);
+  --background-color: var(--secondary-background-color);
+  --username-color: var(--secondary-text-color);
+
+  /* === === === */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: var(--background-color);
+  border: 0.1rem solid var(--border-color);
+
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.75rem;
+  margin-right: auto;
+  margin-left: 0rem;
+
+  border-radius: 0rem var(--border-radius) var(--border-radius)
+    var(--border-radius);
+}
+
+.root--author {
+  --border-color: var(--primary-border-color);
+  --background-color: var(--primary-background-color);
+  --username-color: var(--primary-text-color);
+
+  margin-right: 0rem;
+  margin-left: auto;
+
+  border-radius: var(--border-radius) 0rem var(--border-radius)
+    var(--border-radius);
+}
+
+.username {
+  color: var(--username-color);
+}
+
+.content {
+  margin: 0.3rem 0rem 0rem;
+  color: var(--default-text-color);
+}
+
+.log-text {
+  margin: 1rem auto;
+
+  border: 0.1rem solid var(--default-border-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
