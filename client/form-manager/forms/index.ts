@@ -1,4 +1,1 @@
-export {
-  default as LoginForm,
-  type LoginFormSchemaType,
-} from "./login-form/index.ts";
+export { default as LoginForm } from "./login-form/index.ts";
