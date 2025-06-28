@@ -26,25 +26,37 @@ const ChatPage = () => {
       return;
     }
 
-    const { username } = loggedUser;
-
     //=== SOCKET ===//
 
     const clientSocket = io(SERVER_URL);
 
-    clientSocket.on(CHANNELS.CONNECT, () => {
-      console.log("Connected with ID:", clientSocket.id);
+    setSocket(clientSocket);
+  }, []);
+
+  React.useEffect(() => {
+    if (!socket) return;
+    if (!loggedUserManager) return;
+
+    const { loggedUser } = loggedUserManager;
+
+    if (!loggedUser) {
+      void navigate(CLIENT_ROUTES.LOGIN);
+      return;
+    }
+
+    const { username } = loggedUser;
+
+    socket.on(CHANNELS.CONNECT, () => {
+      console.log("Connected with ID:", socket.id);
     });
 
-    clientSocket.emit(CHANNELS.LOGIN, username);
-
-    setSocket(clientSocket);
+    socket.emit(CHANNELS.LOGIN, username);
 
     return () => {
-      clientSocket.off(CHANNELS.CONNECT);
-      clientSocket.off(CHANNELS.LOGIN);
+      socket.off(CHANNELS.CONNECT);
+      socket.off(CHANNELS.LOGIN);
     };
-  }, []);
+  }, [socket]);
 
   if (!socket) return null;
 

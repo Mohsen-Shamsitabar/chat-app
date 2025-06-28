@@ -3,7 +3,7 @@ import express from "express";
 import http from "http";
 import { StatusCodes } from "http-status-codes";
 import { Server, type Socket } from "socket.io";
-import BiDirectionalMap from "../client/utils/bi-directional-map.ts";
+import { LOG_CONTENT, MESSAGE_TYPE } from "../constants/data.ts";
 import {
   API_ROUTES,
   CHANNELS,
@@ -16,6 +16,8 @@ import {
 } from "../schemas/login-form.ts";
 import { type Message } from "../types/data.ts";
 import type { LoginRequest, LoginResponse } from "../types/network.ts";
+import BiDirectionalMap from "../utils/bi-directional-map.ts";
+import createMessageId from "../utils/create-message-id.ts";
 
 const app = express();
 
@@ -65,20 +67,38 @@ ioServer.on("connection", socket => {
   console.log("Socket connected:", socket.id);
 
   socket.on(CHANNELS.LOGIN, (username: LoginFormSchema["username"]) => {
-    console.log("USER LOGGED IN!");
-
     connectedUsers.set(username, socket);
+
+    const message: Message = {
+      id: createMessageId(),
+      senderSocketId: socket.id,
+      senderUsername: username,
+      messageType: MESSAGE_TYPE.LOG,
+      content: LOG_CONTENT.JOINED,
+    };
+
+    socket.broadcast.emit(CHANNELS.NOTIFY_MESSAGE, message);
   });
 
   socket.on(CHANNELS.DISCONNECT, () => {
-    console.log("User Disconnected!");
+    const disconnectedUsername = connectedUsers.getByValue(socket);
+
+    if (!disconnectedUsername) return;
+
+    const message: Message = {
+      id: createMessageId(),
+      senderSocketId: socket.id,
+      senderUsername: disconnectedUsername,
+      messageType: MESSAGE_TYPE.LOG,
+      content: LOG_CONTENT.LEFT,
+    };
+
+    socket.broadcast.emit(CHANNELS.NOTIFY_MESSAGE, message);
 
     connectedUsers.deleteByValue(socket);
   });
 
   socket.on(CHANNELS.SUBMIT_MESSAGE, (message: Message) => {
-    console.log("Message Submitted", message);
-
     // use broadcast to only effect other sockets.
     socket.broadcast.emit(CHANNELS.NOTIFY_MESSAGE, message);
 
