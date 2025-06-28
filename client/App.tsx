@@ -4,7 +4,7 @@ import { CLIENT_ROUTES } from "../constants/network.ts";
 import { LoggedUserManagerProvider } from "../managers/logged-user.tsx";
 import { type LoginFormSchema } from "../schemas/login-form.ts";
 import { Header } from "./components/index.ts";
-import { ChatPage, LoginPage } from "./views/index.ts";
+import { ChatPage, LoginPage, NotFoundPage } from "./views/index.ts";
 
 const App = () => {
   const [loggedUser, setLoggedUser] = React.useState<null | LoginFormSchema>(
@@ -27,6 +27,11 @@ const App = () => {
         <Route
           path={CLIENT_ROUTES.CHATROOM}
           element={<ChatPage />}
+        />
+
+        <Route
+          path="*"
+          element={<NotFoundPage />}
         />
       </Routes>
     </LoggedUserManagerProvider>

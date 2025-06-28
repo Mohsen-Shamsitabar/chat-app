@@ -1,0 +1,21 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10rem auto 0;
+
+  & > h2 {
+    text-align: center;
+  }
+}
+
+.icon {
+  --size: 8rem;
+
+  width: var(--size);
+  height: var(--size);
+
+  margin-bottom: 1rem;
+}
