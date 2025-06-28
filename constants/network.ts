@@ -1,10 +1,11 @@
+export const DOMAIN_NAME = "http://localhost";
+export const IP_ADDRESS = "http://192.168.1.144";
+
 export const SERVER_PORT = 3001;
-// export const SERVER_URL = `http://192.168.1.144:${SERVER_PORT}`;
-export const SERVER_URL = `http://localhost:${SERVER_PORT}`;
+export const SERVER_URL = `${DOMAIN_NAME}:${SERVER_PORT}`;
 
 export const CLIENT_PORT = 5173;
-// export const CLIENT_URL = `http://192.168.1.144:${CLIENT_PORT}`;
-export const CLIENT_URL = `http://localhost:${CLIENT_PORT}`;
+export const CLIENT_URL = `${DOMAIN_NAME}:${CLIENT_PORT}`;
 
 export const API_ROUTES = {
   LOGIN: "/users/login",
