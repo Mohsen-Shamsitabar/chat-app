@@ -1,16 +1,17 @@
 import * as React from "react";
-import { type AllHTMLAttributes } from "react";
 import { CHANNELS } from "../../../../../constants/network.ts";
 import { useClientSocket } from "../../../../../providers/client-socket.tsx";
 import { type Message } from "../../../../../types/data.ts";
-import { mergeClasses } from "../../../../utils/index.ts";
+import mergeClasses from "../../../../utils/merge-classes.ts";
 import { MessageBox } from "../index.ts";
 import classes from "./styles.module.css";
 
-type Props = AllHTMLAttributes<HTMLDivElement>;
+type Props = {
+  className?: string;
+};
 
 const MessagesContainer = (props: Props) => {
-  const { className, ...otherProps } = props;
+  const { className } = props;
 
   const containerRef = React.useRef<null | HTMLDivElement>(null);
 
@@ -59,7 +60,6 @@ const MessagesContainer = (props: Props) => {
 
   return (
     <div
-      {...otherProps}
       className={mergeClasses(classes["root"], className)}
       ref={containerRef}
     >

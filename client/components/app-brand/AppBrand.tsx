@@ -1,12 +1,12 @@
-import { type AllHTMLAttributes } from "react";
 import { FaRocketchat } from "react-icons/fa";
+import classes from "./styles.module.css";
 
-type Props = AllHTMLAttributes<HTMLDivElement>;
-
-const AppBrand = (props: Props) => {
+const AppBrand = () => {
   return (
-    <span {...props}>
-      Chat App <FaRocketchat />
+    <span className={classes["root"]}>
+      <span>Chat App</span>
+
+      <FaRocketchat className={classes["icon"]} />
     </span>
   );
 };
