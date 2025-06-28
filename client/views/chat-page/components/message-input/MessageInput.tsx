@@ -1,19 +1,20 @@
-import { nanoid } from "nanoid";
 import * as React from "react";
-import { type AllHTMLAttributes } from "react";
 import { MESSAGE_TYPE } from "../../../../../constants/data.ts";
 import { CHANNELS } from "../../../../../constants/network.ts";
 import { useLoggedUserManager } from "../../../../../managers/logged-user.tsx";
 import { useClientSocket } from "../../../../../providers/client-socket.tsx";
-import { type Message, type MessageId } from "../../../../../types/data.ts";
+import { type Message } from "../../../../../types/data.ts";
+import createMessageId from "../../../../../utils/create-message-id.ts";
 import { Button, Input } from "../../../../components/index.ts";
 import mergeClasses from "../../../../utils/merge-classes.ts";
 import classes from "./styles.module.css";
 
-type Props = AllHTMLAttributes<HTMLFormElement>;
+type Props = {
+  className?: string;
+};
 
 const MessageInput = (props: Props) => {
-  const { className, ...otherProps } = props;
+  const { className } = props;
 
   const [message, setMessage] = React.useState<string>("");
 
@@ -40,13 +41,11 @@ const MessageInput = (props: Props) => {
     if (!message) return;
     if (!socketId) return;
 
-    const messageId: MessageId = `M_${nanoid()}`;
-
     const messageObject: Message = {
-      id: messageId,
+      id: createMessageId(),
       senderSocketId: socketId,
-      messageType: MESSAGE_TYPE.USER_SENT,
       senderUsername: loggedUser!.username,
+      messageType: MESSAGE_TYPE.USER_SENT,
       content: message,
     };
 
@@ -56,10 +55,7 @@ const MessageInput = (props: Props) => {
   };
 
   return (
-    <form
-      {...otherProps}
-      className={mergeClasses(classes["root"], className)}
-    >
+    <form className={mergeClasses(classes["root"], className)}>
       <Input
         value={message}
         onChange={handleInputChange}

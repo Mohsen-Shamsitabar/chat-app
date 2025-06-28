@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
-import { type AllHTMLAttributes } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { CLIENT_ROUTES } from "../../../../constants/network.ts";
@@ -15,10 +14,12 @@ import mergeClasses from "../../../utils/merge-classes.ts";
 import { StringFormControl } from "../../form-controls/index.ts";
 import classes from "./styles.module.css";
 
-type Props = AllHTMLAttributes<HTMLFormElement>;
+type Props = {
+  className?: string;
+};
 
 const LoginForm = (props: Props) => {
-  const { className, ...otherProps } = props;
+  const { className } = props;
 
   const { handleSubmit, register, formState, setError, clearErrors } = useForm({
     resolver: zodResolver(loginFormSchema),
@@ -55,7 +56,6 @@ const LoginForm = (props: Props) => {
 
   return (
     <form
-      {...otherProps}
       className={mergeClasses(className, classes["root"])}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}

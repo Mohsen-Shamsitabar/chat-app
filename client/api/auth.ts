@@ -13,6 +13,11 @@ export const login = async (data: LoginFormSchema): Promise<Result> => {
     headers: { "content-type": "application/json" },
     body: JSON.stringify(data),
   });
+  // const res = await fetch(`${SERVER_URL}${API_ROUTES.LOGIN}`, {
+  //   method: "POST",
+  //   headers: { "content-type": "application/json" },
+  //   body: JSON.stringify(data),
+  // });
 
   const body = (await res.json()) as LoginResponseBody;
 

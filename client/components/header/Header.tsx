@@ -1,14 +1,15 @@
-import { type AllHTMLAttributes } from "react";
 import { useLoggedUserManager } from "../../../managers/logged-user.tsx";
 import mergeClasses from "../../utils/merge-classes.ts";
 import AppBrand from "../app-brand/AppBrand.tsx";
 import ThemeSwitcher from "../theme-switcher/ThemeSwitcher.tsx";
 import classes from "./styles.module.css";
 
-type Props = AllHTMLAttributes<HTMLDivElement>;
+type Props = {
+  className?: string;
+};
 
 const Header = (props: Props) => {
-  const { className, ...otherProps } = props;
+  const { className } = props;
 
   const loggedUserManager = useLoggedUserManager();
 
@@ -30,10 +31,7 @@ const Header = (props: Props) => {
   };
 
   return (
-    <header
-      {...otherProps}
-      className={mergeClasses(className, classes["root"])}
-    >
+    <header className={mergeClasses(className, classes["root"])}>
       <nav className={classes["navbar"]}>
         <AppBrand />
 
