@@ -5,9 +5,9 @@ import {
   CHANNELS,
   CLIENT_ROUTES,
   SERVER_URL,
-} from "../../../constants/network.ts";
-import { useLoggedUserManager } from "../../../managers/logged-user.tsx";
-import { ClientSocketProvider } from "../../../providers/client-socket.tsx";
+} from "../../../shared/constants/network.ts";
+import { useLoggedUserManager } from "../../managers/logged-user.tsx";
+import { ClientSocketProvider } from "../../providers/client-socket.tsx";
 import { MessageInput, MessagesContainer } from "./components/index.ts";
 import classes from "./styles.module.css";
 

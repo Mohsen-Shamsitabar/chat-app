@@ -1,6 +1,6 @@
-import { API_ROUTES, SERVER_URL } from "../../constants/network.ts";
-import type { LoginFormSchema } from "../../schemas/login-form.ts";
-import { type LoginResponseBody } from "../../types/network.ts";
+import { API_ROUTES, SERVER_URL } from "../../shared/constants/network.ts";
+import type { LoginFormSchema } from "../../shared/schemas/login-form.ts";
+import { type LoginResponseBody } from "../../shared/types/network.ts";
 
 type Result = {
   message: string;

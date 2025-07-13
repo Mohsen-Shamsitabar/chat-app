@@ -1,5 +1,5 @@
 import { type FormState, type UseFormRegister } from "react-hook-form";
-import { type LoginFormSchema } from "../../../../schemas/login-form.ts";
+import { type LoginFormSchema } from "../../../../shared/schemas/login-form.ts";
 import { Input } from "../../../components/index.ts";
 import classes from "./styles.module.css";
 

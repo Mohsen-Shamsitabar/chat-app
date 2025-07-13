@@ -1,5 +1,5 @@
-import type { LOG_CONTENT, MESSAGE_TYPE } from "../constants/data.ts";
-import type { LoginFormSchema } from "../schemas/login-form.ts";
+import { type LOG_CONTENT, type MESSAGE_TYPE } from "../constants/data.ts";
+import { type LoginFormSchema } from "../schemas/login-form.ts";
 
 type MessageType = typeof MESSAGE_TYPE;
 type LogContent = (typeof LOG_CONTENT)[keyof typeof LOG_CONTENT];

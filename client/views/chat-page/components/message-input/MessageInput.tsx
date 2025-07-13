@@ -1,11 +1,11 @@
 import * as React from "react";
-import { MESSAGE_TYPE } from "../../../../../constants/data.ts";
-import { CHANNELS } from "../../../../../constants/network.ts";
-import { useLoggedUserManager } from "../../../../../managers/logged-user.tsx";
-import { useClientSocket } from "../../../../../providers/client-socket.tsx";
-import { type Message } from "../../../../../types/data.ts";
-import createMessageId from "../../../../../utils/create-message-id.ts";
+import { MESSAGE_TYPE } from "../../../../../shared/constants/data.ts";
+import { CHANNELS } from "../../../../../shared/constants/network.ts";
+import { type Message } from "../../../../../shared/types/data.ts";
+import createMessageId from "../../../../../shared/utils/create-message-id.ts";
 import { Button, Input } from "../../../../components/index.ts";
+import { useLoggedUserManager } from "../../../../managers/logged-user.tsx";
+import { useClientSocket } from "../../../../providers/client-socket.tsx";
 import mergeClasses from "../../../../utils/merge-classes.ts";
 import classes from "./styles.module.css";
 

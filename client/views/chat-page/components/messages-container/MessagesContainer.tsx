@@ -1,7 +1,7 @@
 import * as React from "react";
-import { CHANNELS } from "../../../../../constants/network.ts";
-import { useClientSocket } from "../../../../../providers/client-socket.tsx";
-import { type Message } from "../../../../../types/data.ts";
+import { CHANNELS } from "../../../../../shared/constants/network.ts";
+import { type Message } from "../../../../../shared/types/data.ts";
+import { useClientSocket } from "../../../../providers/client-socket.tsx";
 import mergeClasses from "../../../../utils/merge-classes.ts";
 import { MessageBox } from "../index.ts";
 import classes from "./styles.module.css";
