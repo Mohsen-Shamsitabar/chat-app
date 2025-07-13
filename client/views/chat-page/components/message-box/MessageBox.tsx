@@ -1,5 +1,5 @@
-import { MESSAGE_TYPE } from "../../../../../constants/data.ts";
-import type { Message } from "../../../../../types/data.ts";
+import { MESSAGE_TYPE } from "../../../../../shared/constants/data.ts";
+import { type Message } from "../../../../../shared/types/data.ts";
 import mergeClasses from "../../../../utils/merge-classes.ts";
 import classes from "./styles.module.css";
 

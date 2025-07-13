@@ -1,5 +1,5 @@
 import * as React from "react";
-import { type LoginFormSchema } from "../schemas/login-form.ts";
+import { type LoginFormSchema } from "../../shared/schemas/login-form.ts";
 
 type LoggedUserManager = {
   loggedUser: LoginFormSchema | null;

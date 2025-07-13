@@ -1,4 +1,4 @@
-import { useLoggedUserManager } from "../../../managers/logged-user.tsx";
+import { useLoggedUserManager } from "../../managers/logged-user.tsx";
 import mergeClasses from "../../utils/merge-classes.ts";
 import AppBrand from "../app-brand/AppBrand.tsx";
 import ThemeSwitcher from "../theme-switcher/ThemeSwitcher.tsx";

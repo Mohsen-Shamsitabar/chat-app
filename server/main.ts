@@ -3,21 +3,24 @@ import express from "express";
 import http from "http";
 import { StatusCodes } from "http-status-codes";
 import { Server, type Socket } from "socket.io";
-import { LOG_CONTENT, MESSAGE_TYPE } from "../constants/data.ts";
+import { LOG_CONTENT, MESSAGE_TYPE } from "../shared/constants/data.ts";
 import {
   API_ROUTES,
   CHANNELS,
   SERVER_PORT,
   SERVER_URL,
-} from "../constants/network.ts";
+} from "../shared/constants/network.ts";
 import {
   loginFormSchema,
   type LoginFormSchema,
-} from "../schemas/login-form.ts";
-import { type Message } from "../types/data.ts";
-import type { LoginRequest, LoginResponse } from "../types/network.ts";
-import BiDirectionalMap from "../utils/bi-directional-map.ts";
-import createMessageId from "../utils/create-message-id.ts";
+} from "../shared/schemas/login-form.ts";
+import { type Message } from "../shared/types/data.ts";
+import {
+  type LoginRequest,
+  type LoginResponse,
+} from "../shared/types/network.ts";
+import BiDirectionalMap from "../shared/utils/bi-directional-map.ts";
+import createMessageId from "../shared/utils/create-message-id.ts";
 
 const app = express();
 

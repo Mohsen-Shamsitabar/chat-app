@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import type { LoginFormSchema } from "../schemas/login-form.ts";
+import { type LoginFormSchema } from "../schemas/login-form.ts";
 
 export type LoginRequest = Request<unknown, unknown, LoginFormSchema>;
 

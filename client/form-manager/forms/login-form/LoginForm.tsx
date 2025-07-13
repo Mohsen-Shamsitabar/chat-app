@@ -2,14 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { CLIENT_ROUTES } from "../../../../constants/network.ts";
-import { useLoggedUserManager } from "../../../../managers/logged-user.tsx";
+import { CLIENT_ROUTES } from "../../../../shared/constants/network.ts";
 import {
   type LoginFormSchema,
   loginFormSchema,
-} from "../../../../schemas/login-form.ts";
+} from "../../../../shared/schemas/login-form.ts";
 import { login } from "../../../api/auth.ts";
 import { Button } from "../../../components/index.ts";
+import { useLoggedUserManager } from "../../../managers/logged-user.tsx";
 import mergeClasses from "../../../utils/merge-classes.ts";
 import { StringFormControl } from "../../form-controls/index.ts";
 import classes from "./styles.module.css";

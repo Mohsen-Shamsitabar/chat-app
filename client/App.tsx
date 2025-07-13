@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Route, Routes } from "react-router";
-import { CLIENT_ROUTES } from "../constants/network.ts";
-import { LoggedUserManagerProvider } from "../managers/logged-user.tsx";
-import { type LoginFormSchema } from "../schemas/login-form.ts";
+import { CLIENT_ROUTES } from "../shared/constants/network.ts";
+import { type LoginFormSchema } from "../shared/schemas/login-form.ts";
 import { Header } from "./components/index.ts";
+import { LoggedUserManagerProvider } from "./managers/logged-user.tsx";
 import { ChatPage, LoginPage, NotFoundPage } from "./views/index.ts";
 
 const App = () => {
