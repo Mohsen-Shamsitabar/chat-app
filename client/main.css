@@ -1,6 +1,7 @@
 :root {
-  --animation-duration: 250ms;
-  --width-breakpoint: 512px;
+  --general-animation-duration: 250ms;
+  --hover-animation-duration: 50ms;
+  --width-breakpoint: 32rem;
   --header-height: 3.5rem;
   --chat-input-height: 3.5rem;
 
@@ -70,7 +71,7 @@
 
 * {
   transition-property: background-color, color, border-color, outline-color;
-  transition-duration: var(--animation-duration);
+  transition-duration: var(--general-animation-duration);
   transition-timing-function: ease;
 
   box-sizing: border-box;

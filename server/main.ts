@@ -23,10 +23,15 @@ const app = express();
 
 app.use(express.json(), cors());
 
-const connectedUsers = new BiDirectionalMap<
+const connectedUsersMap = new BiDirectionalMap<
   LoginFormSchema["username"],
   Socket
 >();
+
+/**
+ * Lowercase of all the connected users, to check name duplicates.
+ */
+const connectedUsersSet = new Set<LoginFormSchema["username"]>([]);
 
 app.post(API_ROUTES.LOGIN, (req: LoginRequest, res: LoginResponse) => {
   const body = req.body;
@@ -41,7 +46,8 @@ app.post(API_ROUTES.LOGIN, (req: LoginRequest, res: LoginResponse) => {
 
   const { username } = body;
 
-  const alreadyLoggedIn = connectedUsers.keyHas(username);
+  const loweredUsername = username.toLowerCase();
+  const alreadyLoggedIn = connectedUsersSet.has(loweredUsername);
 
   if (alreadyLoggedIn) {
     res
@@ -67,7 +73,10 @@ ioServer.on("connection", socket => {
   console.log("Socket connected:", socket.id);
 
   socket.on(CHANNELS.LOGIN, (username: LoginFormSchema["username"]) => {
-    connectedUsers.set(username, socket);
+    const loweredUsername = username.toLowerCase();
+
+    connectedUsersMap.set(username, socket);
+    connectedUsersSet.add(loweredUsername);
 
     const message: Message = {
       id: createMessageId(),
@@ -81,21 +90,24 @@ ioServer.on("connection", socket => {
   });
 
   socket.on(CHANNELS.DISCONNECT, () => {
-    const disconnectedUsername = connectedUsers.getByValue(socket);
+    const username = connectedUsersMap.getByValue(socket);
 
-    if (!disconnectedUsername) return;
+    if (!username) return;
 
     const message: Message = {
       id: createMessageId(),
       senderSocketId: socket.id,
-      senderUsername: disconnectedUsername,
+      senderUsername: username,
       messageType: MESSAGE_TYPE.LOG,
       content: LOG_CONTENT.LEFT,
     };
 
     socket.broadcast.emit(CHANNELS.NOTIFY_MESSAGE, message);
 
-    connectedUsers.deleteByValue(socket);
+    const loweredUsername = username.toLowerCase();
+
+    connectedUsersMap.deleteByValue(socket);
+    connectedUsersSet.delete(loweredUsername);
   });
 
   socket.on(CHANNELS.SUBMIT_MESSAGE, (message: Message) => {

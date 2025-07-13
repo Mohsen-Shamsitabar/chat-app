@@ -6,6 +6,7 @@
   --text-color: var(--default-text-color);
   --opacity: 1;
   --cursor: pointer;
+  --shadow-color: transparent;
 
   /* === === === */
 
@@ -15,6 +16,10 @@
   color: var(--text-color);
   opacity: var(--opacity);
   cursor: var(--cursor);
+  box-shadow: 0rem 0rem 0.75rem var(--shadow-color);
+
+  transition-property: box-shadow;
+  transition-duration: var(--hover-animation-duration);
 
   padding: 0.25rem 0.5rem;
 
@@ -59,6 +64,11 @@
       from var(--border-color) calc(r + var(--color-active-delta))
         calc(g + var(--color-active-delta)) calc(b + var(--color-active-delta))
     );
+  }
+
+  &:focus {
+    --shadow-color: var(--border-color);
+    outline: 0.1rem solid var(--border-color);
   }
 }
 
